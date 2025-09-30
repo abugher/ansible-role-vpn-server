@@ -1,0 +1,17 @@
+---
+install_packages:
+  - 'charon-systemd'
+  - 'strongswan-swanctl'
+  - 'libstrongswan-standard-plugins'
+template_files:
+  - owner:                      'root'
+    group:                      'root'
+    mode:                       '0640'
+    src:                        'templates/swanctl.conf.j2'
+    dest:                       '/etc/swanctl/swanctl.conf'
+enable_services:
+  - 'strongswan'
+restart_services:
+  - 'strongswan'
+start_services:
+  - 'strongswan'
