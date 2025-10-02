@@ -3,5 +3,6 @@
 - include_tasks:        '../tasks/template_files.yml'
 - include_tasks:        '../tasks/enable_services.yml'
 - include_tasks:        '../tasks/restart_services.yml'
-  when:                 template_files_result.changed
+  when:                 install_packages_result.changed
+                        or template_files_result.changed
 - include_tasks:        '../tasks/start_services.yml'

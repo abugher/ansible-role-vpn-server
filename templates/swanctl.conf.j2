@@ -2,31 +2,16 @@
 
 connections {
   rw {
-    local {
-      auth = pubkey
-      {# Should a matching private key be specified? #}
-      {# certs = /etc/ssl/certs/{{ inventory_hostname }}.pem #}
-      {# Cover all domains. #}
-      id = vpn.{{ domain }}
-    }
     remote {
-      auth = eap-md5
+      auth = psk
     }
-    {# What is a "local traffic selector"? #}
-    {# 
-    children {
-      rw {
-        local_ts  = 10.1.0.0/16
-      }
-    }
-    #}
     send_certreq = no
   }
 }
 
 
 secrets {
-  eap-bugher {
+  psk-bugher {
     id = bugher
     secret = "{{ lookup('community.general.passwordstore', 'shared/vpn/bugher') }}"
   }
